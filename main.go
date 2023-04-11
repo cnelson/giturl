@@ -147,13 +147,13 @@ func main() {
 	fs := flag.NewFlagSetWithEnvPrefix(cmd, "GITOPENER", 0)
 	fs.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s:\n", cmd)
-		fmt.Fprintf(os.Stderr, "%s [optional flags] <file to open>\n", cmd)
+		fmt.Fprintf(os.Stderr, "%s [optional flags] <file to open>[:line number]\n", cmd)
 		fs.PrintDefaults()
 	}
 
 	fs.StringVar(&branch, "branch", "", "The branch to use when viewing the file.  Defaults to the current working branch.")
-	fs.Var(&githubDomains, "github-domain", `Treat this domain as a github instance.  Useful for private github installs. Can be specified more than once`)
-	fs.Var(&gitlabDomains, "gitlab-domain", `Treat this domain as a gitlab instance.  Useful for private github installs. Can be specified more than once`)
+	fs.Var(&githubDomains, "github-domain", `Treat this domain as a github instance.  Useful for private github installs. Can be specified more than once.`)
+	fs.Var(&gitlabDomains, "gitlab-domain", `Treat this domain as a gitlab instance.  Useful for private gitlab installs. Can be specified more than once.`)
 
 	if fs.Parse(os.Args[1:]) != nil {
 		os.Exit(1)
